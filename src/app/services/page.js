@@ -74,10 +74,10 @@ export default function ServicesPage() {
                 </div>
                 <div className="mt-6">
                   <Link
-                    href="/contact"
+                    href={`/services/${service.id}`}
                     className="inline-flex items-center gap-2 text-sm font-semibold text-primary-400 hover:text-cyan-400 transition-colors group/link"
                   >
-                    Get started with this service
+                    See full details
                     <ArrowRight className="w-4 h-4 group-hover/link:translate-x-1 transition-transform" />
                   </Link>
                 </div>
