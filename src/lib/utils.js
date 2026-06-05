@@ -28,7 +28,12 @@ export const siteConfig = {
       href: '/services',
       children: [
         { label: 'All Services', href: '/services' },
-        { label: 'Reels & Engagement', href: '/reels-engagement' },
+        { label: 'Social Media Management', href: '/services/social-media-management' },
+        { label: 'Reels & Video Production', href: '/services/reels-video-production' },
+        { label: 'Paid Advertising', href: '/services/paid-advertising' },
+        { label: 'SEO & Content Marketing', href: '/services/seo-content' },
+        { label: 'Influencer Marketing', href: '/services/influencer-marketing' },
+        { label: 'Brand Strategy & Identity', href: '/services/brand-strategy' },
       ],
     },
     { label: 'Portfolio', href: '/portfolio' },
