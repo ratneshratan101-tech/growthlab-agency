@@ -268,7 +268,7 @@ Social platforms own your followers — you do not. Every social media strategy 
     id: 4,
     slug: 'tiktok-for-business-guide',
     title: 'TikTok for Business: How to Go from Zero to 100K Followers Fast',
-    excerpt: 'TikTok's algorithm is the most democratised in social media — new accounts can reach millions with zero followers. Learn the exact content system, posting cadence, and niche positioning that drives rapid growth.',
+    excerpt: 'TikTok\'s algorithm is the most democratised in social media — new accounts can reach millions with zero followers. Learn the exact content system, posting cadence, and niche positioning that drives rapid growth.',
     category: 'TikTok',
     date: '2024-06-24',
     updatedAt: '2024-06-24',
