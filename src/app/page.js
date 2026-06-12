@@ -11,7 +11,7 @@ import { siteConfig } from '@/lib/utils'
 const stats = [
   { value: '500+', label: 'Brands Grown' },
   { value: '$12M+', label: 'Ad Revenue Managed' },
-  { value: '4.9â', label: 'Average Rating' },
+  { value: '4.9Ã¢ÂÂ', label: 'Average Rating' },
   { value: '98%', label: 'Client Retention' },
 ]
 
@@ -19,7 +19,7 @@ const whyUs = [
   {
     icon: BarChart3,
     title: 'Data-Driven Strategy',
-    desc: 'Every decision is backed by analytics. We A/B test constantly, track every KPI, and optimize based on what actually works â not guesses.',
+    desc: 'Every decision is backed by analytics. We A/B test constantly, track every KPI, and optimize based on what actually works Ã¢ÂÂ not guesses.',
   },
   {
     icon: Zap,
@@ -39,7 +39,7 @@ const whyUs = [
   {
     icon: Users,
     title: 'Dedicated Account Team',
-    desc: 'You get a senior strategist, content creator, and account manager assigned to your brand â not a junior assistant.',
+    desc: 'You get a senior strategist, content creator, and account manager assigned to your brand Ã¢ÂÂ not a junior assistant.',
   },
   {
     icon: TrendingUp,
@@ -56,7 +56,7 @@ export default function HomePage() {
 
   return (
     <>
-      {/* ââ HERO ââ */}
+      {/* Ã¢ÂÂÃ¢ÂÂ HERO Ã¢ÂÂÃ¢ÂÂ */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-hero-gradient pt-20">
         {/* Background glow */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -106,7 +106,7 @@ export default function HomePage() {
               <div key={stat.label} className="glass rounded-2xl p-4">
                 <div className="text-2xl md:text-3xl font-black gradient-text">{stat.value}</div>
                 <div className="text-xs text-gray-400 mt-1">{stat.label}</div>
-              </Link>
+              </div>
             ))}
           </div>
         </div>
@@ -115,13 +115,13 @@ export default function HomePage() {
         <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-dark-900 to-transparent" />
       </section>
 
-      {/* ââ SERVICES OVERVIEW ââ */}
+      {/* Ã¢ÂÂÃ¢ÂÂ SERVICES OVERVIEW Ã¢ÂÂÃ¢ÂÂ */}
       <section className="section-padding bg-dark-900">
         <div className="container-custom">
           <SectionHeader
             tag="What We Do"
             title="Everything Your Brand Needs to Grow"
-            subtitle="From viral Reels to high-ROI ad campaigns â we handle every aspect of your digital growth."
+            subtitle="From viral Reels to high-ROI ad campaigns Ã¢ÂÂ we handle every aspect of your digital growth."
           />
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {featuredServices.map((service, i) => (
@@ -139,7 +139,7 @@ export default function HomePage() {
                     </li>
                   ))}
                 </ul>
-              </div>
+              </Link>
             ))}
           </div>
           <div className="text-center mt-10">
@@ -150,7 +150,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ââ WHY CHOOSE US ââ */}
+      {/* Ã¢ÂÂÃ¢ÂÂ WHY CHOOSE US Ã¢ÂÂÃ¢ÂÂ */}
       <section className="section-padding bg-dark-800">
         <div className="container-custom">
           <SectionHeader
@@ -172,7 +172,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ââ PORTFOLIO HIGHLIGHTS ââ */}
+      {/* Ã¢ÂÂÃ¢ÂÂ PORTFOLIO HIGHLIGHTS Ã¢ÂÂÃ¢ÂÂ */}
       <section className="section-padding bg-dark-900">
         <div className="container-custom">
           <SectionHeader
@@ -218,7 +218,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ââ TESTIMONIALS ââ */}
+      {/* Ã¢ÂÂÃ¢ÂÂ TESTIMONIALS Ã¢ÂÂÃ¢ÂÂ */}
       <section className="section-padding bg-dark-800">
         <div className="container-custom">
           <SectionHeader
@@ -254,7 +254,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ââ BLOG HIGHLIGHTS ââ */}
+      {/* Ã¢ÂÂÃ¢ÂÂ BLOG HIGHLIGHTS Ã¢ÂÂÃ¢ÂÂ */}
       <section className="section-padding bg-dark-900">
         <div className="container-custom">
           <SectionHeader
@@ -278,7 +278,7 @@ export default function HomePage() {
                   </span>
                 </div>
                 <div className="p-6">
-                  <p className="text-xs text-gray-500 mb-2">{post.date} Â· {post.readTime}</p>
+                  <p className="text-xs text-gray-500 mb-2">{post.date} ÃÂ· {post.readTime}</p>
                   <h3 className="text-base font-bold text-white group-hover:gradient-text transition-all duration-200 leading-snug">
                     {post.title}
                   </h3>
@@ -294,7 +294,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ââ CONTACT CTA ââ */}
+      {/* Ã¢ÂÂÃ¢ÂÂ CONTACT CTA Ã¢ÂÂÃ¢ÂÂ */}
       <section className="section-padding bg-gradient-to-br from-primary-900/50 to-dark-900 border-y border-primary-800/30">
         <div className="container-custom text-center">
           <div className="max-w-3xl mx-auto">
