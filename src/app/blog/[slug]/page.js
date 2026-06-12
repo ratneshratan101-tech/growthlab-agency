@@ -50,6 +50,13 @@ export default function BlogPostPage({ params }) {
     },
   }
 
+  const function renderInline(text) {
+    const parts = text.split(/\*\*(.*?)\*\*/g)
+    return parts.map((part, i) =>
+      i % 2 === 1 ? <strong key={i} className="font-semibold text-white">{part}</strong> : part
+    )
+  }
+
   const contentParagraphs = post.content
     .split('\n')
     .filter((line) => line.trim())
@@ -61,10 +68,10 @@ export default function BlogPostPage({ params }) {
       if (line.startsWith('**') && line.endsWith('**'))
         return <p key={i} className="font-bold text-white mt-4 mb-2">{line.replace(/\*\*/g, '')}</p>
       if (line.startsWith('- '))
-        return <li key={i} className="text-gray-300 text-sm leading-relaxed ml-4 list-disc mb-1">{line.replace('- ', '')}</li>
+        return <li key={i} className="text-gray-300 text-sm leading-relaxed ml-4 list-disc mb-1">{renderInline(line.replace('- ', ''))}</li>
       if (/^\d+\./.test(line))
-        return <li key={i} className="text-gray-300 text-sm leading-relaxed ml-4 list-decimal mb-1">{line.replace(/^\d+\.\s/, '')}</li>
-      return <p key={i} className="text-gray-300 leading-relaxed mb-4">{line}</p>
+        return <li key={i} className="text-gray-300 text-sm leading-relaxed ml-4 list-decimal mb-1">{renderInline(line.replace(/^\d+\.\s/, ''))}</li>
+      return <p key={i} className="text-gray-300 leading-relaxed mb-4">{renderInline(line)}</p>
     })
 
   return (
