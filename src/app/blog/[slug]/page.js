@@ -50,29 +50,50 @@ export default function BlogPostPage({ params }) {
     },
   }
 
-  const function renderInline(text) {
+  function renderInline(text) {
     const parts = text.split(/\*\*(.*?)\*\*/g)
     return parts.map((part, i) =>
       i % 2 === 1 ? <strong key={i} className="font-semibold text-white">{part}</strong> : part
     )
   }
 
-  const contentParagraphs = post.content
-    .split('\n')
-    .filter((line) => line.trim())
-    .map((line, i) => {
-      if (line.startsWith('## '))
-        return <h2 key={i} className="text-2xl font-bold text-white mt-10 mb-4">{line.replace('## ', '')}</h2>
-      if (line.startsWith('### '))
-        return <h3 key={i} className="text-xl font-semibold text-white mt-8 mb-3">{line.replace('### ', '')}</h3>
-      if (line.startsWith('**') && line.endsWith('**'))
-        return <p key={i} className="font-bold text-white mt-4 mb-2">{line.replace(/\*\*/g, '')}</p>
-      if (line.startsWith('- '))
-        return <li key={i} className="text-gray-300 text-sm leading-relaxed ml-4 list-disc mb-1">{renderInline(line.replace('- ', ''))}</li>
-      if (/^\d+\./.test(line))
-        return <li key={i} className="text-gray-300 text-sm leading-relaxed ml-4 list-decimal mb-1">{renderInline(line.replace(/^\d+\.\s/, ''))}</li>
-      return <p key={i} className="text-gray-300 leading-relaxed mb-4">{renderInline(line)}</p>
+  function renderContent(content) {
+    const lines = content.split('\n').filter(line => line.trim())
+    const elements = []
+    let buffer = []
+    let listType = null
+    const flush = () => {
+      if (!buffer.length) return
+      const ulCls = 'list-disc pl-6 mb-5 space-y-2 text-gray-300 text-sm leading-relaxed'
+      const olCls = 'list-decimal pl-6 mb-5 space-y-2 text-gray-300 text-sm leading-relaxed'
+      elements.push(listType === 'ul'
+        ? <ul key={'l'+elements.length} className={ulCls}>{[...buffer]}</ul>
+        : <ol key={'l'+elements.length} className={olCls}>{[...buffer]}</ol>)
+      buffer = []; listType = null
+    }
+    lines.forEach((line, i) => {
+      if (line.startsWith('## ')) {
+        flush()
+        elements.push(<h2 key={i} className="text-2xl font-bold text-white mt-10 mb-4">{renderInline(line.replace('## ', ''))}</h2>)
+      } else if (line.startsWith('### ')) {
+        flush()
+        elements.push(<h3 key={i} className="text-xl font-semibold text-white mt-8 mb-3">{renderInline(line.replace('### ', ''))}</h3>)
+      } else if (line.startsWith('- ')) {
+        if (listType !== 'ul') { flush(); listType = 'ul' }
+        buffer.push(<li key={i}>{renderInline(line.slice(2))}</li>)
+      } else if (/^\d+\./.test(line)) {
+        if (listType !== 'ol') { flush(); listType = 'ol' }
+        buffer.push(<li key={i}>{renderInline(line.replace(/^\d+\.\s/, ''))}</li>)
+      } else {
+        flush()
+        elements.push(<p key={i} className="text-gray-300 leading-relaxed mb-4">{renderInline(line)}</p>)
+      }
     })
+    flush()
+    return elements
+  }
+
+  const contentParagraphs = renderContent(post.content)
 
   return (
     <>
