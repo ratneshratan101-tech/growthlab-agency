@@ -35,6 +35,16 @@ export default function BlogPostPage({ params }) {
   const relatedPosts = [...related, ...otherRelated].slice(0, 2)
 
   // Article schema markup
+  const faqSchema = post.faq && post.faq.length > 0 ? {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: post.faq.map(item => ({
+      '@type': 'Question',
+      name: item.q,
+      acceptedAnswer: { '@type': 'Answer', text: item.a }
+    }))
+  } : null
+
   const articleSchema = {
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
@@ -42,7 +52,8 @@ export default function BlogPostPage({ params }) {
     description: post.excerpt,
     image: post.image,
     datePublished: post.date,
-    author: { '@type': 'Person', name: post.author },
+    dateModified: post.updatedAt || post.date,
+    author: { '@type': 'Person', name: typeof post.author === 'object' ? post.author.name : post.author },
     publisher: {
       '@type': 'Organization',
       name: siteConfig.name,
@@ -101,6 +112,12 @@ export default function BlogPostPage({ params }) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
       />
+      {faqSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        />
+      )}
 
       {/* Hero */}
       <section className="relative pt-32 pb-12 bg-hero-gradient overflow-hidden">
@@ -113,7 +130,10 @@ export default function BlogPostPage({ params }) {
             <span className="flex items-center gap-1 text-xs text-gray-500">
               <Clock className="w-3 h-3" /> {post.readTime}
             </span>
-            <span className="text-xs text-gray-500">{post.date}</span>
+            <span className="text-xs text-gray-500">Published: {post.date}</span>
+            {post.updatedAt && post.updatedAt !== post.date && (
+              <span className="text-xs text-cyan-400 font-medium">Updated: {post.updatedAt}</span>
+            )}
           </div>
           <h1 className="text-3xl md:text-5xl font-black text-white leading-tight mb-6">{post.title}</h1>
           <p className="text-gray-400 text-lg leading-relaxed mb-8">{post.excerpt}</p>
@@ -141,6 +161,24 @@ export default function BlogPostPage({ params }) {
             {/* Article Body */}
             <article className="lg:col-span-2 prose prose-invert max-w-none">
               <div className="space-y-1">{contentParagraphs}</div>
+
+              {/* FAQ Section */}
+              {post.faq && post.faq.length > 0 && (
+                <div className="mt-12 border-t border-white/10 pt-10">
+                  <h2 className="text-2xl font-bold text-white mb-6">Frequently Asked Questions</h2>
+                  <div className="space-y-4">
+                    {post.faq.map((item, i) => (
+                      <details key={i} className="group card-dark cursor-pointer">
+                        <summary className="flex items-center justify-between font-semibold text-white text-sm leading-relaxed list-none cursor-pointer py-1">
+                          <span>{item.q}</span>
+                          <span className="ml-4 flex-shrink-0 text-primary-400 group-open:rotate-180 transition-transform">▾</span>
+                        </summary>
+                        <p className="mt-3 text-gray-300 text-sm leading-relaxed">{item.a}</p>
+                      </details>
+                    ))}
+                  </div>
+                </div>
+              )}
             </article>
 
             {/* Sidebar */}
