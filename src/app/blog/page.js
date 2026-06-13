@@ -75,8 +75,8 @@ export default function BlogPage() {
                 </h2>
                 <p className="text-gray-400 text-sm leading-relaxed mb-5">{featured.excerpt}</p>
                 <div className="flex items-center gap-4 mb-6">
-                  <Image src={featured.authorAvatar} alt={featured.author} width={32} height={32} className="rounded-full" />
-                  <span className="text-sm text-gray-300">{featured.author}</span>
+                  <Image src={featured.author.avatar} alt={featured.author.name} width={32} height={32} className="rounded-full" />
+                  <span className="text-sm text-gray-300">{featured.author.name}</span>
                   <span className="text-gray-600">·</span>
                   <span className="flex items-center gap-1 text-xs text-gray-500">
                     <Clock className="w-3 h-3" /> {featured.readTime}
@@ -135,8 +135,8 @@ export default function BlogPage() {
                   </div>
                   <div className="p-6">
                     <div className="flex items-center gap-3 mb-3">
-                      <Image src={post.authorAvatar} alt={post.author} width={24} height={24} className="rounded-full" />
-                      <span className="text-xs text-gray-400">{post.author}</span>
+                      <Image src={post.author.avatar} alt={post.author.name} width={24} height={24} className="rounded-full" />
+                      <span className="text-xs text-gray-400">{post.author.name}</span>
                       <span className="text-gray-600">·</span>
                       <span className="flex items-center gap-1 text-xs text-gray-500">
                         <Clock className="w-3 h-3" /> {post.readTime}
