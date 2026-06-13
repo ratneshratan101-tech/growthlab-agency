@@ -485,4 +485,6 @@ One-off campaigns rarely deliver the ROI of ongoing creator partnerships:
 
 export { blogPosts };
 export const categories = [...new Set(blogPosts.map(p => p.category))];
+export { blogPosts };
+export const categories = ['All', 'Instagram', 'Paid Ads', 'Strategy', 'TikTok', 'SEO', 'Influencer Marketing'];
 export default blogPosts;
