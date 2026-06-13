@@ -171,7 +171,7 @@ export default function BlogPostPage({ params }) {
                       <details key={i} className="group card-dark cursor-pointer">
                         <summary className="flex items-center justify-between font-semibold text-white text-sm leading-relaxed list-none cursor-pointer py-1">
                           <span>{item.q}</span>
-                          <span className="ml-4 flex-shrink-0 text-primary-400 group-open:rotate-180 transition-transform">â¾</span>
+                          <span className="ml-4 flex-shrink-0 text-primary-400 group-open:rotate-180 transition-transform">v</span>
                         </summary>
                         <p className="mt-3 text-gray-300 text-sm leading-relaxed">{item.a}</p>
                       </details>
