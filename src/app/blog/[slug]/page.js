@@ -17,7 +17,7 @@ export async function generateMetadata({ params }) {
       images: [{ url: post.image }],
       type: 'article',
       publishedTime: post.date,
-      authors: [post.author],
+      authors: [typeof post.author === "object" ? post.author.name : post.author],
     },
   }
 }
@@ -138,10 +138,10 @@ export default function BlogPostPage({ params }) {
           <h1 className="text-3xl md:text-5xl font-black text-white leading-tight mb-6">{post.title}</h1>
           <p className="text-gray-400 text-lg leading-relaxed mb-8">{post.excerpt}</p>
           <div className="flex items-center gap-3">
-            <Image src={post.authorAvatar} alt={post.author} width={44} height={44} className="rounded-full" />
+            <Image src={post.author.avatar} alt={post.author.name} width={44} height={44} className="rounded-full" />
             <div>
-              <p className="text-white font-semibold text-sm">{post.author}</p>
-              <p className="text-gray-500 text-xs">{post.authorRole}</p>
+              <p className="text-white font-semibold text-sm">{post.author.name}</p>
+              <p className="text-gray-500 text-xs">{post.author.role}</p>
             </div>
           </div>
         </div>
@@ -171,7 +171,7 @@ export default function BlogPostPage({ params }) {
                       <details key={i} className="group card-dark cursor-pointer">
                         <summary className="flex items-center justify-between font-semibold text-white text-sm leading-relaxed list-none cursor-pointer py-1">
                           <span>{item.q}</span>
-                          <span className="ml-4 flex-shrink-0 text-primary-400 group-open:rotate-180 transition-transform">▾</span>
+                          <span className="ml-4 flex-shrink-0 text-primary-400 group-open:rotate-180 transition-transform">â¾</span>
                         </summary>
                         <p className="mt-3 text-gray-300 text-sm leading-relaxed">{item.a}</p>
                       </details>
